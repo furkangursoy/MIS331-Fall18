@@ -1,2 +1,2 @@
-# MIS331-Fall18
-MIS 331 - Data Mining Lab and PS materials
+# MIS 331 - Data Mining, Fall'18
+Lab and PS materials will be available after each session.
