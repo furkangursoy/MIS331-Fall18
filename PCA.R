@@ -21,7 +21,7 @@ KMO(cor(autox.df)) #see that we can obtain the same result by directly supplying
 
 cortest.bartlett(autox.df) #bartlett's test of sphericity. p values smaller than 0.5 usually indicates suitability
 cortest.bartlett(cor(autox.df), n = nrow(autox.df)) #see that we can obtain the same result by supplying correlation matrix and sample size 
-
+#do not confuse with bartlett.test() which is a different test
 
 ### PCA without scaling ###
 autox.pca <- prcomp(autox.df) #perform principal component analysis. see the help on this function
