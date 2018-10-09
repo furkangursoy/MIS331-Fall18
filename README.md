@@ -5,7 +5,7 @@ Lab and PS materials will be available after each session.
 
 * For details on Principal Component Analysis, see Chapter 4 of Applied Multivariate Techniques by Sharma at https://ekowiki.ekonomika.be/wiki/images/9/90/Applied_Multivariate_Techniques_-_Subhash_Sharma.pdf
 
-* Please study Intro.R and PCA.R files and let me know if you have any questions. Intro.R contains some codes which are not shown in the lab session.
+* Please study Intro.R, ChiSq.R, and PCA.R files and let me know if you have any questions. Intro.R contains some codes which are not shown in the lab session so pay special attention.
 
 
 Exercises.docx file contains the problems solved in PS sessions.
