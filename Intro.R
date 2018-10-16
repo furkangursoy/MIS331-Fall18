@@ -171,3 +171,32 @@ df.auto$horsepowerR01 <- rangeStandardize01(df.auto$horsepower)
 summary(df.auto)
 
 
+## Exercise 7. Plots of right and left skewed data # 2018-16-10 ## 
+
+ls <- rbeta(1000, 5, 2) #left skewed data
+rs <- rbeta(1000, 2 ,5) #right skewed data
+
+plot(density(rs), main = "Right Skewed")
+plot(density(ls), main = "Left Skewed")
+
+boxplot(rs, range = 0)
+boxplot(ls, range = 0)
+
+n = length(rs)
+# q (quantile) plots
+plot((1:n - 1)/(n - 1), sort(rs), type="l", 
+       main = "Quantile Plot for Right Skewed Data",
+       xlab = "Sample Fraction",
+       ylab = "Sample Quantile")
+
+plot((1:n - 1)/(n - 1), sort(ls), type="l",
+     main = "Quantile Plot for Left Skewed Data",
+     xlab = "Sample Fraction",
+     ylab = "Sample Quantile")
+
+# q-q plot
+qqplot(rs, ls)
+
+## Exercise 8. The dice fairness question. # 2018-16-10 ## 
+obs <- c(5, 5, 5, 15, 15, 15)
+chisq.test(obs)
