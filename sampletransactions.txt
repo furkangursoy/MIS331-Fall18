@@ -1,0 +1,11 @@
+apple, orange, milk
+apple, bread
+bread, chocolate
+bread, milk, lemon
+bread, milk, apple, water
+bread, orange, chocalate, water
+bread, butter
+bread, butter, milk
+water
+water, bread
+milk, bread, butter, chocolate
