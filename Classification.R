@@ -1,5 +1,13 @@
+#install.packages("rpart") 
+#install.packages("class")
 #install.packages("e1071")
+#install.packages("adabag")
+
 library(rpart) #decision tree
+library(class) #k-nn classifier
+library(e1071) #naive bayes classifier
+library(adabag) #bagging and boosting with rpart
+
 
 # read the dataset and split it into train and test sets #
 auto.df <- read.table("autompg1.csv", header=TRUE, sep=",")
@@ -67,11 +75,11 @@ knn.accuracy <- sum(auto.knn == auto.test$origin) / nrow(auto.test) #overall acc
 knn.accuracy
 
 auto.knn3 <- knn(train=auto.train, test=auto.test, cl = auto.train$origin, k=3) #predicted values for the test set
-knn3.accuracy <- sum(auto.knn5 == auto.test$origin) / nrow(auto.test) #overall accuracy
+knn3.accuracy <- sum(auto.knn3 == auto.test$origin) / nrow(auto.test) #overall accuracy
 knn3.accuracy
 
 auto.knn10 <- knn(train=auto.train, test=auto.test, cl = auto.train$origin, k=10, l=6) #predicted values for the test set
-knn10.accuracy <- sum(auto.knn5 == auto.test$origin) / nrow(auto.test) #overall accuracy
+knn10.accuracy <- sum(auto.knn10 == auto.test$origin, na.rm=TRUE) / nrow(auto.test) #overall accuracy. remove NAs
 knn10.accuracy
 
 
@@ -106,6 +114,7 @@ auto.boost <- boosting(auto.formula, auto.train, mfinal = 10) #see the comments 
 names(auto.boost)
 auto.boost$trees
 auto.boost$votes
+auto.boost$weights
 auto.boost$prob
 auto.boost$class
 auto.boost.pred <- predict(auto.boost, auto.test)
