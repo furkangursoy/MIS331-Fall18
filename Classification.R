@@ -58,3 +58,57 @@ auto.test.pred <- predict(auto.tree3, auto.test, type="class") #predicted values
 auto.tree3.test.accuracy <- sum(auto.test.pred == auto.test$origin)/nrow(auto.test) #overall accuracy
 auto.tree3.test.accuracy
 
+
+
+# create a k-nn classifier model #
+auto.knn <- knn(train=auto.train, test=auto.test, cl = auto.train$origin) #predicted values for the test set
+table(auto.knn, auto.test$origin) 
+knn.accuracy <- sum(auto.knn == auto.test$origin) / nrow(auto.test) #overall accuracy
+knn.accuracy
+
+auto.knn3 <- knn(train=auto.train, test=auto.test, cl = auto.train$origin, k=3) #predicted values for the test set
+knn3.accuracy <- sum(auto.knn5 == auto.test$origin) / nrow(auto.test) #overall accuracy
+knn3.accuracy
+
+auto.knn10 <- knn(train=auto.train, test=auto.test, cl = auto.train$origin, k=10, l=6) #predicted values for the test set
+knn10.accuracy <- sum(auto.knn5 == auto.test$origin) / nrow(auto.test) #overall accuracy
+knn10.accuracy
+
+
+# create a naive bayes classifier #
+auto.bayes <- naiveBayes(auto.formula, auto.train) #train the model
+auto.bayes
+auto.bayes.pred <- predict(auto.bayes, auto.test) #predictions for the test set
+table(auto.bayes.pred, auto.test$origin) #the confusion matrix
+nb.accuracy <- sum(auto.bayes.pred == auto.test$origin) / nrow(auto.test) #overall accuracy for the test set
+nb.accuracy
+
+
+# simple tree for comparison with bagging, boosting #
+auto.rpart <- rpart(auto.formula, auto.train) #see the relevant section above for details on rpart
+auto.rpart.pred <- predict(auto.rpart, auto.test, type="class")
+rpart.accuracy <- sum(auto.rpart.pred == auto.test$origin) / nrow(auto.test)
+rpart.accuracy #compare this with accuracy scores of other methods
+
+# bagging with rpart #
+auto.bag <- bagging(auto.formula, auto.train, mfinal=10) #create 10 trees
+names(auto.bag)
+auto.bag$trees #list of trees
+auto.bag$votes #vote counts for each class. each rows sums up to 10.
+auto.bag$prob #normalized votes
+auto.bag$class #predicted class based on majority vote
+auto.bag.pred <- predict(auto.bag, auto.test) #predictions for test set
+bag.accuracy <- sum(auto.bag.pred$class == auto.test$origin) / nrow(auto.test) #overall accuracy for the test set
+bag.accuracy #compare this with accuracy scores of other methods
+
+# boosting with rpart #
+auto.boost <- boosting(auto.formula, auto.train, mfinal = 10) #see the comments for bagging. interpretations are very similar
+names(auto.boost)
+auto.boost$trees
+auto.boost$votes
+auto.boost$prob
+auto.boost$class
+auto.boost.pred <- predict(auto.boost, auto.test)
+boost.accuracy <- sum(auto.boost.pred$class == auto.test$origin) / nrow(auto.test) #overall accuracy for the test set
+boost.accuracy #compare this with accuracy scores of other methods
+
