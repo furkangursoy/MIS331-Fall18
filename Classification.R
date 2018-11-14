@@ -8,6 +8,8 @@ library(class) #k-nn classifier
 library(e1071) #naive bayes classifier
 library(adabag) #bagging and boosting with rpart
 
+# note: typically, feature rescaling (min-max normalization, normalization, etc.) is advised for some of the algorithms used in this document.
+
 
 # read the dataset and split it into train and test sets #
 auto.df <- read.table("autompg1.csv", header=TRUE, sep=",")
