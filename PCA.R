@@ -19,7 +19,7 @@ names(autox.df) #check that we have all and only desired variables in our data f
 KMO(autox.df) #kaiser-meyer-olkin measure of sampling adequacy. MSA values greater than 0.5 or 0.6 usually indicate suitability
 KMO(cor(autox.df)) #see that we can obtain the same result by directly supplying correlation matrix
 
-cortest.bartlett(autox.df) #bartlett's test of sphericity. p values smaller than 0.5 usually indicates suitability
+cortest.bartlett(autox.df) #bartlett's test of sphericity. p values smaller than 0.05 *usually* indicates suitability
 cortest.bartlett(cor(autox.df), n = nrow(autox.df)) #see that we can obtain the same result by supplying correlation matrix and sample size 
 #do not confuse with bartlett.test() which is a different test
 
